@@ -2,12 +2,13 @@
 
 > **Create and update publication-grade LaTeX resumes in seconds — zero manual code editing required.**
 
-![Next.js](https://img.shields.io/badge/Next.js-14+-000000?style=for-the-badge&logo=next.js&logoColor=white)
-![React](https://img.shields.io/badge/React-18+-61DAFB?style=for-the-badge&logo=react&logoColor=black)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.0+-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![Tectonic](https://img.shields.io/badge/Compiler-Tectonic_Rust-orange?style=for-the-badge&logo=rust&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+![Next.js](https://img.shields.io/badge/Next.js-14+-09090b?style=flat-square&logo=next.js&logoColor=white)
+![React](https://img.shields.io/badge/React-18+-09090b?style=flat-square&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-09090b?style=flat-square&logo=typescript&logoColor=3178C6)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.0+-09090b?style=flat-square&logo=tailwind-css&logoColor=38B2AC)
+![shadcn/ui](https://img.shields.io/badge/shadcn%2Fui-components-09090b?style=flat-square&logo=shadcnui&logoColor=white)
+![Compiler](https://img.shields.io/badge/Compiler-Tectonic_Rust-09090b?style=flat-square&logo=rust&logoColor=orange)
+![License](https://img.shields.io/badge/License-MIT-09090b?style=flat-square)
 
 ---
 
