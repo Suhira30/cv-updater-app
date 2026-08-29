@@ -42,10 +42,12 @@ Whether you need a fresh LaTeX CV built from a battle-tested template or want to
 ## ⚡ The Problem & Solution
 
 ### The Problem
+
 1. **High Initial Creation Barrier**: Creating a custom LaTeX CV from scratch requires downloading multi-gigabyte TeX distributions, learning complex formatting syntax (`\begin{itemize}`, preambles, custom macros), or wrestling with fragile online templates.
 2. **High Recurring Maintenance Tax**: Updating an existing LaTeX CV requires locating custom macros, maintaining bullet styling/tenses, avoiding unescaped special characters (`%`, `&`, `_`), and fitting within page limits.
 
 ### The Solution
+
 - **Zero Manual Code Editing**: Fill out a guided questionnaire to build a new CV or paste your existing `.tex` code to import your custom macros.
 - **Natural Language Updation Engine**: Tell the AI what you want to add or change in plain English (e.g., *"Add a new job bullet under Experience at Acme Corp about building a RAG pipeline"*).
 - **Smart Placement & Sandboxed Compile**: The AI converts the prompt into matching LaTeX macros, places it in the exact right section, compiles it via a sandboxed Rust-based TeX engine (Tectonic), and displays a live side-by-side code diff + PDF preview.
@@ -54,7 +56,7 @@ Whether you need a fresh LaTeX CV built from a battle-tested template or want to
 
 ## 🔄 Dual User Workflows
 
-```
+```text
                            ┌─────────────────────────────────────────┐
                            │            TeXForge CV App              │
                            └────────────────────┬────────────────────┘
@@ -86,11 +88,13 @@ Whether you need a fresh LaTeX CV built from a battle-tested template or want to
 ```
 
 ### Path A: Create from Scratch (New Users)
+
 1. **Select Template**: Pick a starter template (*Technical SWE*, *Academic/Research*, *Clean Minimal*).
 2. **Fill Questionnaire**: Step-by-step wizard collects Personal Details, Experience, Education, Skills, and Projects.
 3. **Generate & Preview**: Generates clean `.tex` source and compiles a live PDF preview.
 
 ### Path B: Existing `.tex` Import & Incremental Updates
+
 1. **Upload `.tex` Source**: Drag-and-drop or paste your existing `.tex` file.
 2. **Style & Macro Indexing**: Automatically extracts preambles, custom macros (`\cvitem`, `\publication`), bullet verb tenses, and section structures.
 3. **Plain-Text Updation**: Provide an update prompt (e.g., *"Add my AWS Architect Certification under Skills"*).
@@ -112,6 +116,7 @@ Whether you need a fresh LaTeX CV built from a battle-tested template or want to
 ## ✨ Core Features
 
 ### MVP (Phase 1)
+
 - 🎨 **Dual Onboarding Paths**: Template gallery + questionnaire wizard (Path A) or existing `.tex` dropzone (Path B).
 - 🔑 **Bring Your Own API Key (BYO-Key)**: Support for OpenAI, Anthropic, and Gemini API keys stored locally in browser session storage.
 - 🧠 **Smart Placement AI Engine**: Parses `.tex` structure, maps natural language prompts to target sections, and generates matching custom macros with LaTeX character escaping.
@@ -121,6 +126,7 @@ Whether you need a fresh LaTeX CV built from a battle-tested template or want to
 - 💾 **Instant Download**: One-click download for `.pdf` and updated `.tex` files.
 
 ### Phase 1.5 & V2 (Future Roadmap)
+
 - ✂️ **1-Click AI Bullet Trimmer**: Automatic conciseness engine to pull 2-page overflows back onto 1 page.
 - 📜 **Session Version History**: Local undo/redo and snapshot rollback stack.
 - 🎯 **Job Description Tailoring**: Paste a job description to get automated bullet reordering and keyword emphasis.
@@ -145,7 +151,7 @@ Whether you need a fresh LaTeX CV built from a battle-tested template or want to
 
 ## 📁 Project Directory Structure
 
-```
+```text
 cv-updater-app/
 ├── README.md                          # Project overview & setup instructions
 ├── docs/
@@ -171,6 +177,7 @@ cv-updater-app/
 ## 💻 System Requirements & Prerequisites
 
 Before running the project locally, ensure you have:
+
 - **Node.js**: `v18.17.0` or higher
 - **Package Manager**: `npm` (v9+) or `pnpm` / `yarn`
 - **Docker** *(Optional for local compilation)*: Required if compiling LaTeX locally via the Tectonic container image.
@@ -181,18 +188,22 @@ Before running the project locally, ensure you have:
 ## 🚀 Getting Started
 
 ### 1. Clone the Repository
+
 ```bash
 git clone https://github.com/your-username/cv-updater-app.git
 cd cv-updater-app
 ```
 
 ### 2. Install Dependencies
+
 ```bash
 npm install
 ```
 
 ### 3. Environment Configuration
+
 Create a `.env.local` file in the project root:
+
 ```env
 # Optional fallback API key (if BYO Key is not entered by user)
 OPENAI_API_KEY=your_openai_api_key_here
@@ -202,6 +213,7 @@ TECTONIC_COMPILER_URL=http://localhost:8080/compile
 ```
 
 ### 4. Run the Development Server
+
 ```bash
 npm run dev
 ```
@@ -213,6 +225,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to view the 
 ## 🔒 Privacy & BYO API Key Policy
 
 TeXForge CV is built with a **Privacy-First Architecture**:
+
 - **Bring Your Own API Key (BYO-Key)**: Users supply their own OpenAI, Anthropic, or Gemini API keys.
 - **Zero Server Storage**: API keys and personal CV content are kept strictly in browser `sessionStorage` or local memory.
 - **No Cloud Database**: Resume contents are never stored in a backend database or retained for training.
@@ -232,5 +245,3 @@ TeXForge CV is built with a **Privacy-First Architecture**:
 ## 📄 License
 
 This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
-#   c v - u p d a t e r - a p p  
- 
