@@ -4,10 +4,12 @@ import React from 'react';
 import { NavigationHeader } from '@/components/NavigationHeader';
 import { ApiKeyModal } from '@/components/ApiKeyModal';
 import { useApiKeyStore } from '@/store/useApiKeyStore';
-import { FilePlus2, UploadCloud, ShieldCheck, Sparkles, Code2, ArrowRight } from 'lucide-react';
+import { PROVIDER_CONFIGS } from '@/types/api-key';
+import { FilePlus2, UploadCloud, ShieldCheck, Sparkles, Code2, ArrowRight, CheckCircle2, Cpu } from 'lucide-react';
 
 export default function HomePage() {
-  const { isKeyConfigured, openKeyModal } = useApiKeyStore();
+  const { activeProvider, openModelModal } = useApiKeyStore();
+  const activeConfig = PROVIDER_CONFIGS[activeProvider] || PROVIDER_CONFIGS.gemini;
 
   return (
     <div className="flex min-h-screen flex-col bg-bg-base">
@@ -16,27 +18,26 @@ export default function HomePage() {
 
       {/* Main Container */}
       <main className="flex-1 px-4 py-8 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full space-y-10">
-        {/* Banner Alert if API Key is not yet configured */}
-        {!isKeyConfigured && (
-          <div className="flex items-center justify-between rounded-md bg-status-warning-bg p-4 border border-status-warning/30 text-status-warning shadow-sm">
-            <div className="flex items-center space-x-3">
-              <ShieldCheck className="h-5 w-5 shrink-0" />
-              <div className="text-small">
-                <span className="font-semibold">Setup Required: </span>
-                Please configure your LLM API Key (OpenAI, Anthropic, or Gemini) to enable AI LaTeX generation and smart updates.
-              </div>
+        {/* Model Status Notice */}
+        <div className="flex items-center justify-between rounded-md bg-status-success-bg p-4 border border-status-success/30 text-status-success shadow-sm">
+          <div className="flex items-center space-x-3">
+            <CheckCircle2 className="h-5 w-5 shrink-0" />
+            <div className="text-small">
+              <span className="font-bold">Zero User Setup Required: </span>
+              AI Engine active with <span className="font-semibold">{activeConfig.name}</span>. Server keys handle all compilation &amp; formatting automatically.
             </div>
-            <button
-              onClick={openKeyModal}
-              className="rounded-sm bg-status-warning px-3.5 py-1.5 text-tiny font-semibold text-white hover:bg-status-warning/90 transition-colors shrink-0"
-            >
-              Configure Key 🔑
-            </button>
           </div>
-        )}
+          <button
+            onClick={openModelModal}
+            className="flex items-center space-x-1.5 rounded-sm bg-status-success px-3.5 py-1.5 text-tiny font-semibold text-white hover:bg-status-success/90 transition-colors shrink-0"
+          >
+            <Cpu className="h-3.5 w-3.5" />
+            <span>Switch Engine ({activeConfig.name})</span>
+          </button>
+        </div>
 
         {/* Hero Section */}
-        <div className="text-center space-y-4 max-w-3xl mx-auto pt-4">
+        <div className="text-center space-y-4 max-w-3xl mx-auto pt-2">
           <div className="inline-flex items-center space-x-2 rounded-full border border-accent-primary/20 bg-accent-subtle px-3.5 py-1 text-tiny font-semibold text-accent-primary">
             <Sparkles className="h-3.5 w-3.5" />
             <span>Zero Manual LaTeX Editing</span>
@@ -50,7 +51,7 @@ export default function HomePage() {
         </div>
 
         {/* Dual Entry Path Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-2">
           {/* Path A Card */}
           <div className="group relative flex flex-col justify-between rounded-lg border border-border-default bg-bg-surface p-8 shadow-card transition-all hover:shadow-popover hover:border-accent-primary/50">
             <div className="space-y-4">
@@ -83,15 +84,13 @@ export default function HomePage() {
             </div>
 
             <div className="pt-8">
-              <button
-                onClick={() => {
-                  if (!isKeyConfigured) openKeyModal();
-                }}
+              <a
+                href="/create"
                 className="w-full flex items-center justify-center space-x-2 rounded-sm bg-accent-primary px-5 py-3 text-small font-semibold text-text-on-primary hover:bg-accent-primary-hover shadow-sm transition-all"
               >
                 <span>Start with Template</span>
                 <ArrowRight className="h-4 w-4" />
-              </button>
+              </a>
             </div>
           </div>
 
@@ -127,23 +126,20 @@ export default function HomePage() {
             </div>
 
             <div className="pt-8">
-              <button
-                onClick={() => {
-                  if (!isKeyConfigured) openKeyModal();
-                }}
+              <a
+                href="/upload"
                 className="w-full flex items-center justify-center space-x-2 rounded-sm border border-border-strong bg-bg-surface px-5 py-3 text-small font-semibold text-text-primary hover:bg-bg-surface-hover transition-all"
               >
                 <Code2 className="h-4 w-4" />
                 <span>Upload .tex File</span>
-              </button>
+              </a>
             </div>
           </div>
         </div>
       </main>
 
-      {/* API Key Modal Container */}
+      {/* AI Model Selector Modal */}
       <ApiKeyModal />
     </div>
   );
 }
-
