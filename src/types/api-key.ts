@@ -1,45 +1,33 @@
-export type LLMProvider = 'openai' | 'anthropic' | 'gemini';
+export type LLMProvider = 'gemini' | 'openai' | 'anthropic';
 
 export interface ProviderConfig {
   id: LLMProvider;
   name: string;
-  placeholder: string;
-  keyPrefix: string;
-  docsUrl: string;
+  badge: string;
+  description: string;
   defaultModel: string;
 }
 
-export interface ApiKeyConfig {
-  provider: LLMProvider;
-  key: string;
-  isValidated: boolean;
-  lastUpdated?: number;
-}
-
 export const PROVIDER_CONFIGS: Record<LLMProvider, ProviderConfig> = {
+  gemini: {
+    id: 'gemini',
+    name: 'Google Gemini',
+    badge: 'Recommended / Fast',
+    description: 'Gemini 1.5 Flash & Pro — Lightning-fast LaTeX formatting and smart section placement.',
+    defaultModel: 'gemini-1.5-flash',
+  },
   openai: {
     id: 'openai',
-    name: 'OpenAI',
-    placeholder: 'sk-proj-...',
-    keyPrefix: 'sk-',
-    docsUrl: 'https://platform.openai.com/api-keys',
+    name: 'OpenAI GPT-4o',
+    badge: 'High Precision',
+    description: 'GPT-4o — Industry benchmark for complex LaTeX macro handling and style preservation.',
     defaultModel: 'gpt-4o',
   },
   anthropic: {
     id: 'anthropic',
     name: 'Anthropic Claude',
-    placeholder: 'sk-ant-api...',
-    keyPrefix: 'sk-ant-',
-    docsUrl: 'https://console.anthropic.com/settings/keys',
+    badge: 'Creative & Concise',
+    description: 'Claude 3.5 Sonnet — Exceptional natural language phrasing and bullet trimming.',
     defaultModel: 'claude-3-5-sonnet-20240620',
   },
-  gemini: {
-    id: 'gemini',
-    name: 'Google Gemini',
-    placeholder: 'AIzaSy...',
-    keyPrefix: 'AIza',
-    docsUrl: 'https://aistudio.google.com/app/apikey',
-    defaultModel: 'gemini-1.5-pro',
-  },
 };
-

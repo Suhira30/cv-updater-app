@@ -4,12 +4,12 @@ const STORAGE_KEY_PREFIX = 'texforge_api_key_';
 const ACTIVE_PROVIDER_KEY = 'texforge_active_provider';
 
 /**
- * Secure Client-Side Privacy Storage Manager
- * Ensures API keys are saved strictly in browser sessionStorage (zero disk/db persistence)
+ * Secure Hybrid API Key Storage Manager
+ * Supports Server-Side Managed Key (default) + Optional Client BYO-Key Override (sessionStorage)
  */
 export const ApiKeyStorage = {
   /**
-   * Save API Key for a specific provider
+   * Save custom user API Key for a specific provider
    */
   saveKey(provider: LLMProvider, key: string): void {
     if (typeof window === 'undefined') return;
@@ -21,7 +21,7 @@ export const ApiKeyStorage = {
   },
 
   /**
-   * Retrieve API Key for a specific provider
+   * Retrieve custom user API Key for a specific provider (if entered)
    */
   getKey(provider: LLMProvider): string | null {
     if (typeof window === 'undefined') return null;
@@ -38,16 +38,22 @@ export const ApiKeyStorage = {
   },
 
   /**
+   * Check if custom key or server key mode is active
+   */
+  isServerKeyDefault(): boolean {
+    return process.env.NEXT_PUBLIC_ENABLE_SERVER_KEY !== 'false';
+  },
+
+  /**
    * Get active key configuration
    */
   getActiveKeyConfig(): ApiKeyConfig | null {
     const provider = this.getActiveProvider();
     const key = this.getKey(provider);
-    if (!key) return null;
 
     return {
       provider,
-      key,
+      key: key || 'SERVER_MANAGED_KEY',
       isValidated: true,
     };
   },
@@ -76,10 +82,10 @@ export const ApiKeyStorage = {
    * Utility to mask API keys for safe UI display (e.g. "sk-pr...a8f")
    */
   maskKey(key: string): string {
-    if (!key || key.length < 8) return '••••••••';
+    if (!key || key === 'SERVER_MANAGED_KEY') return 'Server Managed Key';
+    if (key.length < 8) return '••••••••';
     const prefix = key.slice(0, 5);
     const suffix = key.slice(-4);
     return `${prefix}••••••••${suffix}`;
   },
 };
-
