@@ -1,10 +1,9 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useApiKeyStore } from '@/store/useApiKeyStore';
-import { ApiKeyStorage } from '@/lib/storage/api-key-storage';
 import { PROVIDER_CONFIGS } from '@/types/api-key';
-import { Key, FileText, CheckCircle2, ShieldAlert, Sparkles } from 'lucide-react';
+import { Sparkles, Cpu, ChevronDown } from 'lucide-react';
 
 interface NavigationHeaderProps {
   currentStepTitle?: string;
@@ -13,16 +12,9 @@ interface NavigationHeaderProps {
 export const NavigationHeader: React.FC<NavigationHeaderProps> = ({
   currentStepTitle = 'Setup & Input',
 }) => {
-  const { activeProvider, isKeyConfigured, initializeStore, openKeyModal } = useApiKeyStore();
+  const { activeProvider, openModelModal } = useApiKeyStore();
 
-  useEffect(() => {
-    initializeStore();
-  }, [initializeStore]);
-
-  const activeConfig = PROVIDER_CONFIGS[activeProvider];
-  const maskedKey = isKeyConfigured
-    ? ApiKeyStorage.maskKey(ApiKeyStorage.getKey(activeProvider) || '')
-    : null;
+  const activeConfig = PROVIDER_CONFIGS[activeProvider] || PROVIDER_CONFIGS.gemini;
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border-default bg-bg-surface/90 backdrop-blur-md">
@@ -52,44 +44,20 @@ export const NavigationHeader: React.FC<NavigationHeaderProps> = ({
           <span className="text-text-primary font-semibold">{currentStepTitle}</span>
         </div>
 
-        {/* Right Section: API Key Status Pill & Actions */}
+        {/* Right Section: AI Model Provider Selector */}
         <div className="flex items-center space-x-3">
           <button
-            onClick={openKeyModal}
-            className={`flex items-center space-x-2 rounded-md border px-3 py-1.5 text-small font-medium transition-all ${
-              isKeyConfigured
-                ? 'border-status-success/30 bg-status-success-bg text-status-success hover:border-status-success'
-                : 'border-status-warning/40 bg-status-warning-bg text-status-warning hover:border-status-warning animate-pulse'
-            }`}
-            aria-label="Configure API Key"
+            onClick={openModelModal}
+            className="flex items-center space-x-2 rounded-md border border-status-success/30 bg-status-success-bg px-3 py-1.5 text-small font-semibold text-status-success hover:border-status-success transition-all shadow-sm"
+            aria-label="Select AI Model Provider"
           >
-            {isKeyConfigured ? (
-              <>
-                <CheckCircle2 className="h-4 w-4 shrink-0" />
-                <span className="hidden sm:inline">
-                  {activeConfig.name} ({maskedKey})
-                </span>
-                <span className="sm:hidden font-semibold">API Key ✓</span>
-              </>
-            ) : (
-              <>
-                <ShieldAlert className="h-4 w-4 shrink-0" />
-                <span className="font-semibold">Configure API Key 🔑</span>
-              </>
-            )}
-          </button>
-
-          {/* Quick Info Button */}
-          <button
-            onClick={openKeyModal}
-            className="flex h-9 w-9 items-center justify-center rounded-md border border-border-default text-text-secondary hover:bg-bg-surface-hover hover:text-text-primary transition-colors"
-            title="Settings & Key Config"
-          >
-            <Key className="h-4 w-4" />
+            <Cpu className="h-4 w-4 shrink-0 text-status-success" />
+            <span className="hidden sm:inline">AI Engine: {activeConfig.name}</span>
+            <span className="sm:hidden">{activeConfig.name}</span>
+            <ChevronDown className="h-3.5 w-3.5 opacity-70" />
           </button>
         </div>
       </div>
     </header>
   );
 };
-

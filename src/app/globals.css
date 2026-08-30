@@ -18,6 +18,43 @@
   }
 }
 
+/* Accessibility Utilities */
+@layer utilities {
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  /* Color-Independent Diff Highlights for Accessibility */
+  .diff-line-added {
+    background-color: rgba(30, 142, 90, 0.15);
+    color: #1E8E5A;
+  }
+
+  .diff-line-added::before {
+    content: "+ ";
+    font-weight: bold;
+  }
+
+  .diff-line-removed {
+    background-color: rgba(210, 73, 42, 0.15);
+    color: #D2492A;
+    text-decoration: line-through;
+  }
+
+  .diff-line-removed::before {
+    content: "- ";
+    font-weight: bold;
+  }
+}
+
 /* Custom Scrollbar for Code & Preview Viewports */
 ::-webkit-scrollbar {
   width: 8px;
@@ -36,4 +73,3 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #484F58;
 }
-
