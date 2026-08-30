@@ -4,8 +4,8 @@
 
 ![Next.js](https://img.shields.io/badge/Next.js-14+-09090b?style=flat-square&logo=next.js&logoColor=white)
 ![React](https://img.shields.io/badge/React-18+-09090b?style=flat-square&logo=react&logoColor=61DAFB)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-09090b?style=flat-square&logo=typescript&logoColor=3178C6)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.0+-09090b?style=flat-square&logo=tailwind-css&logoColor=38B2AC)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-09090b?style=flat-square&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.0+-09090b?style=flat-square&logo=tailwind-css&logoColor=white)
 ![shadcn/ui](https://img.shields.io/badge/shadcn%2Fui-components-09090b?style=flat-square&logo=shadcnui&logoColor=white)
 ![Compiler](https://img.shields.io/badge/Compiler-Tectonic_Rust-09090b?style=flat-square&logo=rust&logoColor=orange)
 ![License](https://img.shields.io/badge/License-MIT-09090b?style=flat-square)
@@ -25,7 +25,7 @@
 - [Project Directory Structure](#-project-directory-structure)
 - [System Requirements & Prerequisites](#-system-requirements--prerequisites)
 - [Getting Started](#-getting-started)
-- [Privacy & BYO API Key Policy](#-privacy--byo-api-key-policy)
+- [Zero-Setup AI Engine & Privacy Policy](#-zero-setup-ai-engine--privacy-policy)
 - [Documentation Quick Links](#-documentation-quick-links)
 - [License](#-license)
 
@@ -35,7 +35,7 @@
 
 **TeXForge CV** is a modern web application designed for software engineers, ML developers, graduate students, researchers, and academics who want the **flawless typography of LaTeX** without the frustration of hand-editing code, fixing broken packages, or debugging compiler errors.
 
-Whether you need a fresh LaTeX CV built from a battle-tested template or want to perform routine updates on your existing `.tex` source using plain English prompts, TeXForge handles the syntax formatting, macro placement, sandboxed compilation, and live PDF previewing automatically.
+Whether you need a fresh LaTeX CV built from a battle-tested template or want to perform routine updates on your existing `.tex` source using plain English prompts, TeXForge handles syntax formatting, macro placement, sandboxed compilation, side-by-side diffing, and live PDF previewing automatically.
 
 ---
 
@@ -50,7 +50,7 @@ Whether you need a fresh LaTeX CV built from a battle-tested template or want to
 
 - **Zero Manual Code Editing**: Fill out a guided questionnaire to build a new CV or paste your existing `.tex` code to import your custom macros.
 - **Natural Language Updation Engine**: Tell the AI what you want to add or change in plain English (e.g., *"Add a new job bullet under Experience at Acme Corp about building a RAG pipeline"*).
-- **Smart Placement & Sandboxed Compile**: The AI converts the prompt into matching LaTeX macros, places it in the exact right section, compiles it via a sandboxed Rust-based TeX engine (Tectonic), and displays a live side-by-side code diff + PDF preview.
+- **Smart Placement & Sandboxed Compile**: The AI converts prompts into matching LaTeX macros, places them into the exact target section, compiles via a sandboxed Rust-based TeX engine (Tectonic), and displays live side-by-side diffs + PDF previews.
 
 ---
 
@@ -82,9 +82,16 @@ Whether you need a fresh LaTeX CV built from a battle-tested template or want to
                                                 │
                              Sandboxed Compilation & Auto-Retry
                                                 │
-                            Side-by-Side Diff Review + PDF Preview
+                     ┌──────────────────────────┴──────────────────────────┐
+                     ▼                                                     ▼
+        [Mode 1: Code & PDF Split View]                   [Mode 2: Side-by-Side PDF Comparison]
+                     │                                                     │
+     Monaco Diff + Live PDF Viewport                       Old PDF vs. New PDF Visual Preview
+                     │                                                     │
+                     └──────────────────────────┬──────────────────────────┘
                                                 │
-                             Download Updated .pdf and .tex Files
+                                                ▼
+                             One-Click Copy LaTeX Code & Download PDF
 ```
 
 ### Path A: Create from Scratch (New Users)
@@ -108,7 +115,7 @@ Whether you need a fresh LaTeX CV built from a battle-tested template or want to
 - **US2 (Existing `.tex` Import)**: *As a developer with an existing LaTeX CV*, I want to upload my `.tex` file so that the system indexes my custom macros and formatting conventions.
 - **US3 (Natural Language Updation)**: *As a user updating my CV*, I want to type simple update instructions in plain English, so that the AI automatically formats the changes into matching LaTeX macros and places them in the exact right section.
 - **US4 (Sandboxed Compilation Guarantee)**: *As a user*, I want automatic backend compilation with LLM error-recovery retries, ensuring I am never handed broken LaTeX code.
-- **US5 (Side-by-Side Diff & Preview)**: *As a LaTeX author*, I want to inspect a side-by-side code diff alongside a live compiled PDF preview before downloading.
+- **US5 (Dual Viewports — Code Diff, Side-by-Side PDF Comparison & Instant Export)**: *As a user*, I want to review both a side-by-side code diff (old vs. new `.tex`) AND a visual side-by-side PDF comparison (Original PDF vs. Updated PDF preview), with one-click buttons to copy updated LaTeX code to clipboard and download the updated PDF CV.
 - **US6 (Page-Length Alert)**: *As a user keeping a 1-page resume*, I want to be alerted if an update pushes my CV onto a second page and receive AI bullet compression suggestions.
 
 ---
@@ -118,12 +125,14 @@ Whether you need a fresh LaTeX CV built from a battle-tested template or want to
 ### MVP (Phase 1)
 
 - 🎨 **Dual Onboarding Paths**: Template gallery + questionnaire wizard (Path A) or existing `.tex` dropzone (Path B).
-- 🔑 **Bring Your Own API Key (BYO-Key)**: Support for OpenAI, Anthropic, and Gemini API keys stored locally in browser session storage.
+- ⚡ **Zero-Setup AI Model Selector**: Managed server keys for **Google Gemini**, **OpenAI GPT-4o**, and **Anthropic Claude 3.5 Sonnet** out of the box — no API key prompts required!
 - 🧠 **Smart Placement AI Engine**: Parses `.tex` structure, maps natural language prompts to target sections, and generates matching custom macros with LaTeX character escaping.
 - ⚙️ **Sandboxed Compile & Auto-Retry Loop**: Containerized Tectonic engine with automated multi-turn error recovery (up to 3 retries).
-- 🔍 **Side-by-Side Code Diff & PDF Viewer**: Monaco Editor diff viewer showing line `+`/`-` changes with `[✓ Accept]` and `[✕ Reject]` toggles alongside a high-DPI PDF canvas.
-- ⚠️ **Page-Length Awareness**: Automatic pre/post compile page count comparison with page overflow warning banners.
-- 💾 **Instant Download**: One-click download for `.pdf` and updated `.tex` files.
+- 🔍 **Dual Workspace Viewports**: 
+  - *Mode 1 (Code & PDF View)*: Monaco Editor diff viewer showing line `+`/`-` changes with `[✓ Accept]` and `[✕ Reject]` toggles alongside PDF preview.
+  - *Mode 2 (Side-by-Side PDF Comparison)*: Visual comparison between **Original PDF (Before Update)** and **Updated PDF (After AI Placement)**.
+- 📋 **One-Click Copy & Export**: One-click **Copy Updated LaTeX Code** to clipboard and **Download Updated PDF CV** buttons.
+- ⚠️ **Page-Length Awareness**: Automatic pre/post compile page count comparison with page overflow warning banners and 1-click **AI Bullet Trimmer**.
 
 ### Phase 1.5 & V2 (Future Roadmap)
 
@@ -144,7 +153,7 @@ Whether you need a fresh LaTeX CV built from a battle-tested template or want to
 | **Code Diff Editor** | Monaco Editor (`@monaco-editor/react`) | Interactive side-by-side code diff viewer with LaTeX syntax highlighting. |
 | **PDF Renderer** | `react-pdf` (pdf.js) | High-DPI client-side PDF rendering canvas. |
 | **LaTeX Compilation** | Tectonic Engine (Rust LaTeX Compiler) | Fast (<1s compile), auto-downloads CTAN packages, containerized execution. |
-| **LLM Integration** | Vercel AI SDK (OpenAI / Anthropic / Gemini) | Unified streaming API layer supporting BYO API key headers. |
+| **LLM Integration** | Vercel AI SDK (Gemini / OpenAI / Anthropic) | Multi-provider AI engine layer supported by server keys. |
 | **State & Privacy** | Zustand + SessionStorage | Client-side state management with zero server database footprint. |
 
 ---
@@ -167,9 +176,17 @@ cv-updater-app/
 │   └── task-breakdown.md              # Phased sprint tasks & tech stack breakdown
 └── src/                               # Application source code (Next.js App Router)
     ├── app/                           # Page routes & API endpoints
-    ├── components/                    # UI components (Wizard, DiffViewer, PdfViewer, Modals)
-    ├── lib/                           # LLM client, Tectonic compiler wrapper, AST utilities
-    └── store/                         # Zustand state management
+    │   ├── api/                       # /api/update & /api/compile routes
+    │   ├── create/                    # Path A Questionnaire Wizard page
+    │   ├── upload/                    # Path B Upload & Style Extraction page
+    │   └── workspace/                 # Core Interactive Editing Workspace page
+    ├── components/                    # UI components
+    │   ├── wizard/                    # TemplateGallery, WizardStepper, QuestionnaireForm
+    │   ├── upload/                    # FileDropzone, StyleTraitCard, StyleContractSummary
+    │   └── workspace/                 # UpdatePromptBox, MonacoDiffEditor, PdfViewer, SideBySidePdfViewer, ErrorCard, PageOverflowBanner, ExportModal
+    ├── lib/                           # LaTeX sanitizer, Style Extractor, Template Builder
+    ├── store/                         # Zustand state stores (useWizardStore, useUploadedCvStore, useWorkspaceStore, useApiKeyStore)
+    └── types/                         # Strict TypeScript type definitions
 ```
 
 ---
@@ -181,7 +198,7 @@ Before running the project locally, ensure you have:
 - **Node.js**: `v18.17.0` or higher
 - **Package Manager**: `npm` (v9+) or `pnpm` / `yarn`
 - **Docker** *(Optional for local compilation)*: Required if compiling LaTeX locally via the Tectonic container image.
-- **LLM API Key**: OpenAI, Anthropic, or Google Gemini API key.
+- **LLM API Key**: Google Gemini, OpenAI, or Anthropic API key (configured in `.env.local`).
 
 ---
 
@@ -190,7 +207,7 @@ Before running the project locally, ensure you have:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/cv-updater-app.git
+git clone https://github.com/Suhira30/cv-updater-app.git
 cd cv-updater-app
 ```
 
@@ -205,10 +222,12 @@ npm install
 Create a `.env.local` file in the project root:
 
 ```env
-# Optional fallback API key (if BYO Key is not entered by user)
-OPENAI_API_KEY=your_openai_api_key_here
+# Server-Side Managed API Key (Git-ignored)
+GEMINI_API_KEY=your_gemini_api_key_here
+OPENAI_API_KEY=
+ANTHROPIC_API_KEY=
 
-# Compiler microservice URL (defaults to local Tectonic container)
+# Compiler microservice URL (defaults to local container)
 TECTONIC_COMPILER_URL=http://localhost:8080/compile
 ```
 
@@ -222,13 +241,13 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to view the 
 
 ---
 
-## 🔒 Privacy & BYO API Key Policy
+## 🔒 Zero-Setup AI Engine & Privacy Policy
 
 TeXForge CV is built with a **Privacy-First Architecture**:
 
-- **Bring Your Own API Key (BYO-Key)**: Users supply their own OpenAI, Anthropic, or Gemini API keys.
-- **Zero Server Storage**: API keys and personal CV content are kept strictly in browser `sessionStorage` or local memory.
-- **No Cloud Database**: Resume contents are never stored in a backend database or retained for training.
+- **Zero User Setup**: Users are never forced to supply API keys. Our server environment variables handle compilation and formatting calls automatically.
+- **Provider Choice**: Users can switch AI providers (**Google Gemini**, **OpenAI GPT-4o**, **Anthropic Claude**) anytime via the UI header model selector.
+- **No Cloud Database**: Resume contents are never stored in a backend database or retained for AI training.
 
 ---
 

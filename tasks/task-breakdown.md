@@ -28,35 +28,35 @@ Our evaluation confirms that your **7-point tech stack is 100% optimal for BOTH 
 
 ### Epic 2 — Entry Selection & Path A Questionnaire Wizard (Sprint 2)
 
-- [ ] Build `Landing/EntrySelection` UI featuring dual hero action cards: _"Create from Scratch (Path A)"_ vs _"Upload Existing .tex (Path B)"_
-- [ ] Build `TemplateGallery` card grid with 3 starter templates (_Technical SWE_, _Academic/Research_, _Clean Minimal_) and visual hover previews
-- [ ] Build `WizardStepper` progress bar tracking steps (`Personal Info` → `Experience` → `Education` → `Skills` → `Projects`)
-- [ ] Implement `DynamicFormSection` using React Hook Form + Zod for repeating input fields (`+ Add Position`, `+ Add Project`, `+ Add Skill`)
-- [ ] Connect wizard completion to initial LaTeX generator & PDF compiler
+- [x] Build `Landing/EntrySelection` UI featuring dual hero action cards: _"Create from Scratch (Path A)"_ vs _"Upload Existing .tex (Path B)"_
+- [x] Build `TemplateGallery` card grid with 3 starter templates (_Technical SWE_, _Academic/Research_, _Clean Minimal_) and visual hover previews
+- [x] Build `WizardStepper` progress bar tracking steps (`Personal Info` → `Experience` → `Education` → `Skills` → `Projects`)
+- [x] Implement `DynamicFormSection` using React Hook Form + Zod for repeating input fields (`+ Add Position`, `+ Add Project`, `+ Add Skill`)
+- [x] Connect wizard completion to initial LaTeX generator & PDF compiler
 
 ### Epic 3 — Path B Upload & Style Contract UI (Sprint 3)
 
-- [ ] Build `FileDropzone` component supporting drag-and-drop `.tex` files and direct paste textarea with syntax validation
-- [ ] Build `StyleTraitCard` summary grid displaying auto-detected preamble macros (`\cvitem`), date formats, and bullet tenses
-- [ ] Implement Style Contract Confirmation view
+- [x] Build `FileDropzone` component supporting drag-and-drop `.tex` files and direct paste textarea with syntax validation
+- [x] Build `StyleTraitCard` summary grid displaying auto-detected preamble macros (`\cvitem`), date formats, and bullet tenses
+- [x] Implement Style Contract Confirmation view
 
 ### Epic 4 — Core Split Workspace & Incremental Updation UI (Sprint 4)
 
-- [ ] Build 50/50 flex responsive split workspace layout (`CVWorkspace` component)
-- [ ] Build `UpdatePromptBox` text area with natural language input & quick suggestion chips (_"Add project"_, _"Update job title"_, _"Add reference"_)
-- [ ] Integrate `MonacoDiffEditor` displaying side-by-side code diffs with line `+`/`-` markers and custom hunk `[✓ Accept]` / `[✕ Reject]` action buttons
-- [ ] Build `PdfViewer` canvas viewport with zoom (`+`, `-`, `Fit`), page flip, and print controls
-- [ ] Implement `LoadingOverlay` multi-stage progress modal (_"Analyzing .tex → Smart placement → Compiling PDF (Attempt N/3)"_)
+- [x] Build 50/50 flex responsive split workspace layout (`CVWorkspace` component)
+- [x] Build `UpdatePromptBox` text area with natural language input & quick suggestion chips (_"Add project"_, _"Update job title"_, _"Add reference"_)
+- [x] Integrate `MonacoDiffEditor` displaying side-by-side code diffs with line `+`/`-` markers and custom hunk `[✓ Accept]` / `[✕ Reject]` action buttons
+- [x] Build `PdfViewer` canvas viewport with zoom (`+`, `-`, `Fit`), page flip, and print controls
+- [x] Implement `LoadingOverlay` multi-stage progress modal (_"Analyzing .tex → Smart placement → Compiling PDF (Attempt N/3)"_)
 
 ### Epic 5 — Error Diagnostics, Alerts & Export Modal (Sprint 5)
 
-- [ ] Build `ErrorCard` component featuring plain-language error diagnostics, collapsible raw TeX compiler log accordion, and recovery CTAs
-- [ ] Build `PageOverflowBanner` alert banner triggered when compilation page count expands (e.g. 1 → 2 pages) with 1-click _"AI Bullet Trimmer"_ CTA
-- [ ] Build `ExportModal` dialog for downloading `.pdf` and `.tex` source files
+- [x] Build `ErrorCard` component featuring plain-language error diagnostics, collapsible raw TeX compiler log accordion, and recovery CTAs
+- [x] Build `PageOverflowBanner` alert banner triggered when compilation page count expands (e.g. 1 → 2 pages) with 1-click _"AI Bullet Trimmer"_ CTA
+- [x] Build `ExportModal` dialog for downloading `.pdf` and `.tex` source files
 
 ### Epic 6 — Accessibility & Production Hardening (Sprint 6)
 
-- [ ] Enforce WCAG 2.1 AA keyboard focus rings (`outline: 2px solid #4D8BFF` on focus-visible)
-- [ ] Configure `aria-live="polite"` regions for compilation status and `aria-live="assertive"` for compile errors
-- [ ] Ensure color-independent diff styling (`+` / `-` symbols with strikethrough for deleted code)
-- [ ] End-to-end testing across Chrome, Firefox, Edge, and Safari
+- [x] Enforce WCAG 2.1 AA keyboard focus rings (`outline: 2px solid #4D8BFF` on focus-visible)
+- [x] Configure `aria-live="polite"` regions for compilation status and `aria-live="assertive"` for compile errors
+- [x] Ensure color-independent diff styling (`+` / `-` symbols with strikethrough for deleted code)
+- [x] End-to-end testing across Chrome, Firefox, Edge, and Safari
